@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gradient Interactive Navigation Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            background: linear-gradient(to right, #3494E6, #EC6EAD);
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 1000;
+            transition: background 0.5s ease;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: white;
+            transition: width 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        #color-toggle {
+            background-color: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-left: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        #color-toggle:hover {
+            background-color: rgba(255,255,255,0.3);
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-menu">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+        <button id="color-toggle">Change Background</button>
+    </nav>
+
+    <div style="padding-top: 80px; text-align: center;">
+        <h1>Welcome to the Gradient Navigation Menu</h1>
+        <p>Scroll and click the button to see interactions!</p>
+    </div>
+
+    <script>
+        const navMenu = document.querySelector('.nav-menu');
+        const colorToggle = document.getElementById('color-toggle');
+        const gradients = [
+            'linear-gradient(to right, #3494E6, #EC6EAD)',
+            'linear-gradient(to right, #fc00ff, #00dbde)',
+            'linear-gradient(to right, #ff6a00, #ee0979)',
+            'linear-gradient(to right, #00c6ff, #0072ff)'
+        ];
+
+        let currentGradientIndex = 0;
+
+        colorToggle.addEventListener('click', () => {
+            currentGradientIndex = (currentGradientIndex + 1) % gradients.length;
+            navMenu.style.background = gradients[currentGradientIndex];
+        });
+    </script>
+</body>
+</html>
